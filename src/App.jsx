@@ -1,23 +1,15 @@
 import { Component } from 'react';
 import countcss from './styles.module.scss';
 import Statistics from './components/Statistics';
+import FeedbackOptions from './components/FeedbackOptions';
+import Section from './components/Section';
 
 class App extends Component {
   state = { good: 0, neutral: 0, bad: 0 };
 
-  counterOfGood = () => {
+  counter = key => {
     this.setState(currentState => {
-      return { good: currentState.good + 1 };
-    });
-  };
-  counterOfNeutral = () => {
-    this.setState(currentState => {
-      return { neutral: currentState.neutral + 1 };
-    });
-  };
-  counterOfBad = () => {
-    this.setState(currentState => {
-      return { bad: currentState.bad + 1 };
+      return { [key]: currentState[key] + 1 };
     });
   };
 
@@ -39,39 +31,18 @@ class App extends Component {
     );
     return (
       <>
-        <h1 className={countcss.title}>PLEASE, LEAVE YOUR COMMENT</h1>
-        <div className={countcss.feedback}>
-          <button
-            type="button"
-            onClick={this.counterOfGood}
-            className={countcss.is_good}
-          >
-            Good
-          </button>
-          <button
-            type="button"
-            onClick={this.counterOfNeutral}
-            className={countcss.is_neutral}
-          >
-            Neutral
-          </button>
-          <button
-            type="button"
-            onClick={this.counterOfBad}
-            className={countcss.is_bad}
-          >
-            Bad
-          </button>
-        </div>
-        <h2 className={countcss.title}>STATISTICS</h2>
-
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={total}
-          positiveFeedback={positiveFeedback}
-        />
+        <Section title={'PLEASE, LEAVE YOUR COMMENT'}>
+          <FeedbackOptions onLeaveFeedback={this.counter} />
+        </Section>
+        <Section title={'STATISTICS'}>
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positiveFeedback={positiveFeedback}
+          />
+        </Section>
       </>
     );
   }
