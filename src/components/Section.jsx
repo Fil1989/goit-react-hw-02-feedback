@@ -5,7 +5,7 @@ const Section = ({ title, children }) => {
   return (
     <>
       <h2 className={countcss.title}>{title}</h2>
-      {children}}
+      {children}
     </>
   );
 };

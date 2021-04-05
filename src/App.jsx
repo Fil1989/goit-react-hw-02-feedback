@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import countcss from './styles.module.scss';
 import Statistics from './components/Statistics';
 import FeedbackOptions from './components/FeedbackOptions';
 import Section from './components/Section';
